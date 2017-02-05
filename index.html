@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+    <head>
+
+        <meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>Adblock detect</title>
+<meta name="description" content="Detect ad blocker presence on page">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700,900&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="https://rawgit.com/dbrekalo/attire/master/dist/css/build.min.css">
+<script src="https://rawgit.com/dbrekalo/attire/master/dist/js/build.min.js"></script>
+
+        <script src="dist/index.js"></script>
+
+    </head>
+<body>
+
+    <section id="section-about" class="attireBlock">
+    <div class="inner">
+
+        <h1 data-nav-title="About" class="attireTitleType1">Adblock detect</h1>
+
+        <p class="attireTextType1">
+            A tiny and simple browser library for detecting ad blocker presence on page.
+            Do as you please once you are aware. Has no dependecies and weighs less than 1KB.
+        </p>
+
+        <nav class="attireAuthor">
+    <a class="imageElement" href="https://github.com/dbrekalo">
+        <img src="https://s.gravatar.com/avatar/32754a476fb3db1c5a1f9ad80c65d89d?s=80" alt="Damir Brekalo">
+    </a>
+    <a class="name" href="https://github.com/dbrekalo">Damir Brekalo</a>
+    <p class="socialBox">
+        <a href="mailto:dbrekalo@gmail.com" class="iconMail" title="Contact me by email">Contact me by email</a>
+        <a href="https://github.com/dbrekalo" class="iconGithub" title="Find me on Github">Find me on Github</a>
+        <a href="https://twitter.com/damirbr" class="iconTwitter" title="Reach me on Twitter">Reach me on Twitter</a>
+    </p>
+</nav>
+
+        <p class="attireTextType2">
+            Adblock detect gives you information weather user is using adblock or not.
+            This is done via simple javascript check - no fake network requests or iframes are created,
+            everything is done with one little bait element that ad blocker extensions like to bite on.
+            Once you know if ad blocker is active or not you might render some message or alter page layout
+             in some way - no assumptions are made on our side.
+        </p>
+
+    </div>
+</section>
+    <section id="section-api-and-options" class="attireBlock">
+    <div class="inner">
+
+        <h2 class="attireTitleType2">Api and options</h2>
+
+        <p class="attireTextType2 testText">
+            We detected that you are <span class="adblockDetectedText">not using adblocker</span>. We did so by running following little snippet:
+        </p>
+
+        <style>
+            .adblockDetectedText { color: #07a; }
+        </style>
+
+        <pre class="attireCodeHighlight"><code class="language-javascript">
+            adblockDetect(function(adblockDetected) {
+
+                $('.adblockDetectedText').text(
+                    adblockDetected ? 'using adblocker' : 'not using adblocker'
+                );
+
+            });
+        </code></pre>
+
+        <script>
+
+            adblockDetect(function(adblockDetected) {
+
+                $('.adblockDetectedText').text(
+                        adblockDetected ? 'using adblocker' : 'not using adblocker'
+                );
+
+            });
+
+        </script>
+
+        <p class="attireTextType2 testText">
+            Because of nature of ad blockers test has to be asynchronous. A user provided callback is called with parameter that is either true or false.
+        </p>
+
+        <p class="attireTextType2 testText">
+            Options can be defined on invocation via second parameter:
+        </p>
+
+        <pre class="attireCodeHighlight"><code class="language-javascript">
+            adblockDetect(function(adblockDetected) {
+
+                if (adblockDetected) {
+                    console.log('Ad blocker is detected');
+                } else {
+                    console.log('Ad blocker is not detected');
+                }
+
+            }, {
+                testInterval: 40,
+                testRuns: 5
+            });
+        </code></pre>
+
+        <p class="attireTextType2 testText">
+            If you plan to run ad block check multiple times and want to define options before all that function calls
+            you can alter library defaults in following namespace:
+        </p>
+
+        <pre class="attireCodeHighlight"><code class="language-javascript">
+            adblockDetect.defaults = {
+                testNodeClasses: 'pub_300x250 pub_300x250m pub_728x90 text-ad textAd text_ad text_ads text-ads text-ad-links',
+                testNodeStyle: 'height: 10px !important; font-size: 20px; color: transparent; position: absolute; bottom: 0; left: -10000px;',
+                testInterval: 51,
+                testRuns: 4
+            };
+        </code></pre>
+
+    </div>
+</section>
+    <section class="attireBlock">
+    <div class="inner">
+
+        <h2 class="attireTitleType2">Installation</h2>
+
+        <p class="attireTextType2">
+            Adblock detect is packaged as UMD libary so you can use it in CommonJS, AMD or browser environment.
+        </p>
+
+        <pre class="attireCodeHighlight"><code class="language-javascript">
+            // if you use bundler
+            var adblockDetect = require('adblockdetect');
+
+            // or just using browser globals
+            var adblockDetect = window.adblockDetect;
+        </code></pre>
+
+        <p class="attireTextType2">
+            For browser usage browse dist folder - if working with build tools go with src folder.
+            Download library files from <a href="https://github.com/dbrekalo/adblockdetect">github repo</a>,
+            get them via bower (bower install adblockdetect)
+            or via npm (npm install adblockdetect)
+        </p>
+
+    </div>
+</section>
+
+    <a class="githubRibbon" href="https://github.com/dbrekalo/adblockdetect">
+    <img src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png">
+</a>
+    <footer class="attireFooter">
+    <p>This page is built with <a href="http://dbrekalo.github.io/attire/">Attire</a>.</p>
+</footer>
+
+</body>
+
+</html>

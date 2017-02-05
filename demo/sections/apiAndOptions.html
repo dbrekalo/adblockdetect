@@ -1,0 +1,74 @@
+<section id="section-api-and-options" class="attireBlock">
+    <div class="inner">
+
+        <h2 class="attireTitleType2">Api and options</h2>
+
+        <p class="attireTextType2 testText">
+            We detected that you are <span class="adblockDetectedText">not using adblocker</span>. We did so by running following little snippet:
+        </p>
+
+        <style>
+            .adblockDetectedText { color: #07a; }
+        </style>
+
+        <pre class="attireCodeHighlight"><code class="language-javascript">
+            adblockDetect(function(adblockDetected) {
+
+                $('.adblockDetectedText').text(
+                    adblockDetected ? 'using adblocker' : 'not using adblocker'
+                );
+
+            });
+        </code></pre>
+
+        <script>
+
+            adblockDetect(function(adblockDetected) {
+
+                $('.adblockDetectedText').text(
+                        adblockDetected ? 'using adblocker' : 'not using adblocker'
+                );
+
+            });
+
+        </script>
+
+        <p class="attireTextType2 testText">
+            Because of nature of ad blockers test has to be asynchronous. A user provided callback is called with parameter that is either true or false.
+        </p>
+
+        <p class="attireTextType2 testText">
+            Options can be defined on invocation via second parameter:
+        </p>
+
+        <pre class="attireCodeHighlight"><code class="language-javascript">
+            adblockDetect(function(adblockDetected) {
+
+                if (adblockDetected) {
+                    console.log('Ad blocker is detected');
+                } else {
+                    console.log('Ad blocker is not detected');
+                }
+
+            }, {
+                testInterval: 40,
+                testRuns: 5
+            });
+        </code></pre>
+
+        <p class="attireTextType2 testText">
+            If you plan to run ad block check multiple times and want to define options before all that function calls
+            you can alter library defaults in following namespace:
+        </p>
+
+        <pre class="attireCodeHighlight"><code class="language-javascript">
+            adblockDetect.defaults = {
+                testNodeClasses: 'pub_300x250 pub_300x250m pub_728x90 text-ad textAd text_ad text_ads text-ads text-ad-links',
+                testNodeStyle: 'height: 10px !important; font-size: 20px; color: transparent; position: absolute; bottom: 0; left: -10000px;',
+                testInterval: 51,
+                testRuns: 4
+            };
+        </code></pre>
+
+    </div>
+</section>
