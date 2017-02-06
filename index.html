@@ -24,7 +24,7 @@
 
         <p class="attireTextType1">
             A tiny and simple browser library for detecting ad blocker presence on page.
-            Do as you please once you are aware. Has no dependecies and weighs less than 1KB.
+            Do as you please once you are aware. Has no dependencies and weighs less than 1KB.
         </p>
 
         <nav class="attireAuthor">
@@ -40,7 +40,7 @@
 </nav>
 
         <p class="attireTextType2">
-            Adblock detect gives you information weather user is using adblock or not.
+            Adblock detect gives you information whether user is using adblock or not.
             This is done via simple javascript check - no fake network requests or iframes are created,
             everything is done with one little bait element that ad blocker extensions like to bite on.
             Once you know if ad blocker is active or not you might render some message or alter page layout
@@ -73,15 +73,15 @@
         </code></pre>
 
         <script>
+            $(document).ready(function() {
+                adblockDetect(function(adblockDetected) {
 
-            adblockDetect(function(adblockDetected) {
+                    $('.adblockDetectedText').text(
+                            adblockDetected ? 'using adblocker' : 'not using adblocker'
+                    );
 
-                $('.adblockDetectedText').text(
-                        adblockDetected ? 'using adblocker' : 'not using adblocker'
-                );
-
+                });
             });
-
         </script>
 
         <p class="attireTextType2 testText">
@@ -109,7 +109,7 @@
 
         <p class="attireTextType2 testText">
             If you plan to run ad block check multiple times and want to define options before all that function calls
-            you can alter library defaults in following namespace:
+            you can alter library defaults in following name space:
         </p>
 
         <pre class="attireCodeHighlight"><code class="language-javascript">
@@ -129,7 +129,7 @@
         <h2 class="attireTitleType2">Installation</h2>
 
         <p class="attireTextType2">
-            Adblock detect is packaged as UMD libary so you can use it in CommonJS, AMD or browser environment.
+            Adblock detect is packaged as UMD library so you can use it in CommonJS, AMD or browser environment.
         </p>
 
         <pre class="attireCodeHighlight"><code class="language-javascript">
