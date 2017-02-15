@@ -1,6 +1,7 @@
 {
   "name": "adblock-detect",
   "version": "1.0.3",
+  "description": "Detect ad blocker presence in browser",
   "repository": {
     "type": "git",
     "url": "https://github.com/dbrekalo/adblockdetect"
