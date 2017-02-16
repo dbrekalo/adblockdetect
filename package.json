@@ -29,7 +29,6 @@
     "detectads"
   ],
   "devDependencies": {
-    "bundle-loader": "^0.5.2",
     "chai": "^3.5.0",
     "coveralls": "^2.11.15",
     "grunt": "^1.0.1",
@@ -52,7 +51,6 @@
     "load-grunt-tasks": "^3.5.2",
     "mocha": "^3.2.0",
     "mocha-loader": "^1.1.0",
-    "webpack": "^1.14.0",
-    "webpack-dev-server": "^1.16.3"
+    "webpack": "^1.14.0"
   }
 }
