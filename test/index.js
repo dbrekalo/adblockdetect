@@ -1,29 +1,23 @@
 var assert = require("chai").assert;
 var adblockDetect = require("../");
 
-require('jsdom-global')();
-
 var adblockerMock;
 var adblockerMockInterval;
 
-beforeEach(function() {
+function adblockerMock(implementationCallback, checksAfter) {
 
-    adblockerMock = function(implementationCallback) {
+    implementationCallback = implementationCallback || function(element) {
+        element.style.display = 'none';
+    }
 
-        implementationCallback = implementationCallback || function(element) {
-            element.style.display = 'none';
+    adblockerMockInterval = setInterval(function() {
+        var elements = window.document.getElementsByClassName('textAd');
+        if (elements.length > 0) {;
+            implementationCallback(elements[0]);
         }
+    }, checksAfter || 30);
 
-        adblockerMockInterval = setInterval(function() {
-            var elements = window.document.getElementsByClassName('textAd');
-            if (elements.length > 0) {;
-                implementationCallback(elements[0]);
-            }
-        }, 30);
-
-    };
-
-});
+};
 
 afterEach(function() {
 
@@ -48,9 +42,7 @@ describe("adblockDetect", function() {
 
     it('detects when element has no height', function(done) {
 
-        adblockerMock(function(element) {
-            element.offsetHeight = 0;
-        });
+        adblockerMock();
 
         adblockDetect(function(adblockDetected) {
             assert.isTrue(adblockDetected);
@@ -63,7 +55,7 @@ describe("adblockDetect", function() {
 
         adblockerMock(function(element) {
             element.style.display = 'none';
-        });
+        }, 150);
 
         adblockDetect(function(adblockDetected) {
             assert.isTrue(adblockDetected);
