@@ -32,6 +32,7 @@
 
         }, options.testInterval);
 
+        return clearInterval(testInterval);
     }
 
     function createNode(testNodeClasses, testNodeStyle) {
